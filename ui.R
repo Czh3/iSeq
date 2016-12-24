@@ -409,7 +409,16 @@ shinyUI(navbarPage("iSeq : A web-based server for RNA-seq Data Analysis and Visu
                                 sidebarPanel(
                                   tags$h3("Gene Expression bar plot:"),
 
-                                  tags$textarea(id="Bar_Gene", rows=1, cols=30, "Paste a gene to plot"),
+                                  #tags$textarea(id="Bar_Gene", rows=1, cols=30, "Paste a gene to plot"),
+                                  selectizeInput("Bar_Gene",
+                                      label="Gene Name:",
+                                      choices = NULL,
+                                      multiple=FALSE,
+                                      options = list(
+                                        placeholder = 
+                                          'Start typing to search for a gene name'
+                                      )
+                                  ),
 
                                   tags$hr(),
                                   radioButtons("Bar_group", label = "Group by:", 

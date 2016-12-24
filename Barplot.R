@@ -1,5 +1,11 @@
 # heatmap
-
+  observe({
+    gene = EXP()$Expression
+    gene = rownames(gene)
+    updateSelectizeInput(session,'Bar_Gene',
+                       choices= gene,
+                       server=TRUE)
+    })
 
   stderr <- function(x) sqrt(var(x,na.rm=TRUE)/length(na.omit(x)))
 

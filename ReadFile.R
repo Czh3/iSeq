@@ -2,6 +2,9 @@
 
 csvRead <- function(file){
   exp = read.csv(file, header= T, sep=',', stringsAsFactors = F)
+  if (ncol(exp) == 1){
+    exp = read.table(file, header= T, sep='\t', stringsAsFactors = F)
+  }
   genes = exp[,1]
   
   if ( length(genes) != length(unique(genes)) ){
