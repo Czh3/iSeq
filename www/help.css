@@ -1,0 +1,15 @@
+
+h1 {
+	color: #700005;
+	border-bottom-color: #8C0000;
+	border-bottom-width: 4px;
+	background-color: #fcf8e3;
+}
+
+hr {
+	border-top: 3px solid #700005;
+}
+
+body {
+	font-size: 20px;
+}

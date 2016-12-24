@@ -1,0 +1,127 @@
+.helpInput {
+	position : relative;
+	margin-right: 0px;
+}
+.introduce {
+	color: rgba(26, 76, 35, 0.5);
+}
+
+.navbar-default {
+	border-bottom-color: #8C0000;
+	border-bottom-width: 4px;
+	background-color: #fcf8e3;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+
+	border-bottom-color: #8C0000;
+	color: #8C0000;
+	font-weight: 700;
+	background-color: rgba(242, 222, 222, 0.65);
+	border-radius: 20px 20px 0px 0px;
+
+}
+
+.navbar-default .navbar-nav>li>a {
+	color: #333;
+	font-weight: 600;
+}
+
+/* left panel */ 
+.well{
+	border: 3px solid #700005;
+	background: rgba(252, 248, 227, 0.3);
+}
+
+label {
+	font-weight: 600;
+	font-size: 16px;
+}
+
+/* navbar - iSeq */
+.navbar-default .navbar-brand{
+    color: #700005;
+    font-weight: 900;
+    font-size: xx-large;
+    font-family: fantasy;
+    margin: 10px;
+}
+
+.navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover {
+	color: #700009;
+}
+
+.navbar {
+	font-size: 20px;
+}
+
+/* secend nav */
+.dropdown-menu>li>a {
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.navbar-nav>li>.dropdown-menu {
+	background: #FCF8E3;
+}
+
+.selectize-input{
+	border: 3px solid #a94442;
+}
+
+hr {
+	border-top: 3px solid #700005;
+}
+
+.table-bordered>tbody>tr {
+	border: 3px solid #3C763D;
+}
+
+h3 {
+	color: #8C0000;
+}
+
+pre {
+	border: 3px solid #700005;
+}
+
+.btn-default{
+	border: 3px solid #8C0000;
+    background-color: #8C0000;
+    color: rgba(255,255,255,1);
+    font-weight: 600;
+}
+
+textarea{
+	border: 3px solid #700005;
+}
+
+.dropdown-menu{
+	border: 3px solid #700005;
+	box-shadow: 0 6px 6px rgba(253, 174, 174, 0.175)
+}
+
+body{
+	font-size: 16px;
+}
+
+#firstLetter{
+	font-size: 50px;
+	color: #700005;
+}
+
+/* condition table */
+table.table.shiny-table.table-.spacing-s {
+    border: 2px solid #333;
+    font-family: monospace;
+    font-size: 22px;
+}
+
+/* expression table */
+table.dataTable.no-footer{
+	font-family: monospace;
+	font-size: 18px;
+	font-weight: 500;
+
+}
+
