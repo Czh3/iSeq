@@ -4,6 +4,9 @@ _Author: Czh3 <zhangchao3@hotmail.com>_
 
 Transcriptome sequencing (RNA-seq) is becoming a standard experimental methodology for genome-wide characterization and quantification of transcripts at single base-pair resolution. However, downstream analysis of massive amount of sequencing data can be prohibitively technical for wet-lab researchers. A functionally integrated and user-friendly platform is required to meet this demand. Here, we present iSeq, an R-based Web server, for RNA-seq data analysis and visualization. iSeq is a streamlined Web-based R application under the Shiny framework, featuring a simple user interface and multiple data analysis modules. Users without programming and statistical skills can analyze their RNA-seq data and construct publication-level graphs through a standardized yet customizable analytical pipeline. iSeq provides five analysis modules dedicated to data quality check, gene expression normalization, detection of differentially expressed genes (DEGs), functional characterization of DEGs, and several common plotting types used in RNA-seq analysis. iSeq is accessible via Web browsers on any operating system.
 
+## Online iSeq
+Link: [http://202.205.131.32:3838/RNA-seq](http://202.205.131.32:3838/RNA-seq)
+
 ## iSeq work pipeline
 ![iSeq pipeline](https://github.com/Czh3/iSeq/blob/master/www/iseq.pipeline.png)
 
