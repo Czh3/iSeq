@@ -1,3 +1,11 @@
+############################################################################
+# iSeq: A Web-based server for RNA-seq Data Analysis and Visualization
+# Copyright (C) 2016  Chao Zhang
+#
+# Any bugs or suggestion please report to Czh3(zhangchao3@hotmail.com)
+############################################################################
+
+
 options(shiny.maxRequestSize=40*1024^2) 
 options(Expressions=500000)
 library(ggplot2)
