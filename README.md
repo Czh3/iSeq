@@ -4,7 +4,7 @@ Author: Czh3 <zhangchao3@hotmail.com>
 
 Transcriptome sequencing (RNA-seq) is becoming a standard experimental methodology for genome-wide characterization and quantification of transcripts at single base-pair resolution. However, downstream analysis of massive amount of sequencing data can be prohibitively technical for wet-lab researchers. A functionally integrated and user-friendly platform is required to meet this demand. Here, we present iSeq, an R-based Web server, for RNA-seq data analysis and visualization. iSeq is a streamlined Web-based R application under the Shiny framework, featuring a simple user interface and multiple data analysis modules. Users without programming and statistical skills can analyze their RNA-seq data and construct publication-level graphs through a standardized yet customizable analytical pipeline. iSeq provides five analysis modules dedicated to data quality check, gene expression normalization, detection of differentially expressed genes (DEGs), functional characterization of DEGs, and several common plotting types used in RNA-seq analysis. iSeq is accessible via Web browsers on any operating system.
 
-###Based on R package:
+##Based on R package:
 * shiny
 * shinyBS
 * markdown
@@ -23,12 +23,12 @@ Transcriptome sequencing (RNA-seq) is becoming a standard experimental methodolo
 * org.Mm.eg.db
 * zeroclipr
 
-###How to install
+##How to install
 
-#### install R/Rstudio
+### install R/Rstudio
 This APP is based on R language, download and install R / Rstudio first.
  
-#### install R package
+### install R package
 ```bash
 # R enveriment:
 # The R packages should be installed first!
@@ -43,7 +43,7 @@ biocLite(c("affy", "DESeq", "goseq", "RDAVIDWebService", "preprocessCore",
 			"org.Hs.eg.db", "org.Mm.eg.db"))
 
 ```
-#### run iSeq
+### run iSeq
 ```bash
 # run APP 
 shiny::runGitHub("iSeq", "Czh3")
