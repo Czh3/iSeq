@@ -535,7 +535,8 @@ shinyUI(navbarPage("iSeq : A web-based server for RNA-seq Data Analysis and Visu
 
                                   br(),br(),br(),
                                   h5("The iSeq is designed and supported by bioinformatics core facility @ Peking University."),
-                                  HTML("<h5>This is a free, public, internet accessible resource. Data transfer and data storage are not encrypted. If you worry about the security of data, you are encouraged to setup your own <u>local iSeq</u> on your computer.</h5>"),
+                                  HTML("<h5>This is a free, public, internet accessible resource. Data transfer and data storage are not encrypted. If you worry about the security of data, you are encouraged to setup your own <a href='https://github.com/Czh3/iSeq'>local iSeq</a> on your computer.</h5>"),
+								  h5("Github page: https://github.com/Czh3/iSeq"),
                                   br(),br(),br(),
                                   h6("Any bugs or suggestion report to Czh3 (Email: zhangchao3@hotmail.com).")
                                 ),
