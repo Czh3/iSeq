@@ -1,4 +1,4 @@
-# heatmap
+# bar plot
   observe({
     gene = EXP()$Expression
     gene = rownames(gene)
@@ -33,7 +33,8 @@
       geom_bar(position="dodge",stat = "identity") +
       theme_bw(base_size = 30) +
       theme(panel.border = element_rect(colour = "black", size = 2),
-        axis.text.x = element_text(hjust = 1, angle = 45)) +
+        axis.text.x = element_text(hjust = 1, angle = 45),
+		legend.position = Bar_L()) +
       ggtitle(geneName)
 
     } else {
@@ -53,7 +54,8 @@
       geom_errorbar(limits, position="dodge", width=0.25) +
       theme_bw(base_size = 30) +
       theme(panel.border = element_rect(colour = "black", size = 2),
-        axis.text.x = element_text(hjust = 1, angle = 45)) +
+        axis.text.x = element_text(hjust = 1, angle = 45),
+		legend.position = Bar_L()) +
       ggtitle(geneName)
 
     }
@@ -73,6 +75,12 @@
           "condition" = "condition"
         )
     })
+
+  Bar_L = reactive({
+		switch(input$Bar_legend,
+		"Show" = "right",
+		"Hide" = "none")
+  })
 
   Bar_w = reactive({
     paste0(input$Bar_Width, "px")

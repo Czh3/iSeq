@@ -138,7 +138,7 @@ shinyUI(navbarPage("iSeq : A web-based server for RNA-seq Data Analysis and Visu
                                          tags$br(),
                                          tags$h3("Box plot:"),
                                          #plotOutput(outputId = "box_plot", height = "600px", width = "700px"),
-                                         plotOutput(outputId = "box_plot", height = "600px"),
+                                         plotlyOutput(outputId = "box_plot", height = "600px"),
                                          
                                          tags$hr(),
 
@@ -149,7 +149,7 @@ shinyUI(navbarPage("iSeq : A web-based server for RNA-seq Data Analysis and Visu
                                          conditionalPanel("input.showAll % 2 == 1",
                                            tags$hr(),
                                            tags$h3("Expression Distribution:"),
-                                           plotOutput(outputId = "distribution",height = "700px"),
+                                           plotlyOutput(outputId = "distribution",height = "700px"),
                                            tags$hr(),
 
                                            tags$h3("Clust heatmap"),
@@ -424,6 +424,11 @@ shinyUI(navbarPage("iSeq : A web-based server for RNA-seq Data Analysis and Visu
                                   radioButtons("Bar_group", label = "Group by:", 
                                     choices = list("sample", "condition"),
                                     selected = "sample"),
+								  
+								  radioButtons("Bar_legend", label = "Legend:",
+                                    choices = list("Hide", "Show"),
+                                    selected = "Show"),
+
 
                                   sliderInput("Bar_Width", "Width:", min=500, max=1500, value=800),
                                   sliderInput("Bar_Height", "Height:", min=300, max=1200, value=600)

@@ -137,13 +137,14 @@ shinyServer(func = function(input, output, session) {
       
       incProgress(2/5, detail = "Density")
       #distribution
-      output$distribution <- renderPlot({
+      output$distribution <- renderPlotly({
         Expression.melt = melt(log10(Expression + 1))
         colnames(Expression.melt) = c("Samples", "value")
-        qplot(value, ..density..,  data=Expression.melt, geom="density", fill=Samples, alpha=I(.5), ylab = "Density", xlab = "log10(Expression + 1)") +
+        p = qplot(value, ..density..,  data=Expression.melt, geom="density", fill=Samples, alpha=I(.5), ylab = "Density", xlab = "log10(Expression + 1)") +
           theme_bw(base_size = 30) +
           theme(panel.border = element_rect(colour = "black", size = 2))
-      })
+      	ggplotly(p)
+		})
       
       incProgress(3/5, detail = "MA plot")
       # MA plot
@@ -225,7 +226,7 @@ shinyServer(func = function(input, output, session) {
   
 
 
-    output$box_plot <- renderPlot({
+    output$box_plot <- renderPlotly({
       withProgress(message = 'Normalization:', value = 0, {
         incProgress(1/3, detail = "read data")
          Expression <- NORM()
@@ -245,7 +246,7 @@ shinyServer(func = function(input, output, session) {
               axis.text.x = element_text(angle = 45, hjust = 1))
 
         incProgress(3/3, detail = "plots")
-        p
+        ggplotly(p)
 
       })
     })
