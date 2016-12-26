@@ -503,7 +503,7 @@ shinyUI(navbarPage("iSeq : A web-based server for RNA-seq Data Analysis and Visu
                                 position = "left",
                                 sidebarPanel(
                                   tags$h3("T-Distributed Stochastic Neighbor Embedding(t-SNE)):"),
-                                  tags$h4("Warning: t-SNE suites for large number of samples. If your sample number < 10, we highly recommend you using PCA.")
+                                  tags$h4("Warning: t-SNE suits for large number of samples. If your sample number < 10, we highly recommend you using PCA.")
                                   
                                 ),
                                 mainPanel(
