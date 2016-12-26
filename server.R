@@ -313,4 +313,7 @@ shinyServer(func = function(input, output, session) {
   ############# PCA ##################
   source("PCA.R", local=TRUE)
 
+  ############# t-SNE ##################
+  source("tSNE.R", local=TRUE)
+
 })

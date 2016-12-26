@@ -478,7 +478,7 @@ shinyUI(navbarPage("iSeq : A web-based server for RNA-seq Data Analysis and Visu
                                   tags$hr(),
                                   radioButtons("PCA_color", label = "Colored by:", 
                                     choices = list("sample", "condition"),
-                                    selected = "sample"),
+                                    selected = "condition"),
 
                                   radioButtons("PCA_label", label = "Sample labels:",
                                     choices = list("Hide", "Show"), 
@@ -494,6 +494,21 @@ shinyUI(navbarPage("iSeq : A web-based server for RNA-seq Data Analysis and Visu
                                 mainPanel(
                                   conditionalPanel("output.fileUploaded", 
                                                    uiOutput("PCA.ui")
+                                  )
+                                )
+                              )
+                     ),
+                      tabPanel("t-SNE", icon = icon("th-large"),
+                              sidebarLayout(
+                                position = "left",
+                                sidebarPanel(
+                                  tags$h3("T-Distributed Stochastic Neighbor Embedding(t-SNE)):"),
+                                  tags$h4("Warning: t-SNE suites for large number of samples. If your sample number < 10, we highly recommend you using PCA.")
+                                  
+                                ),
+                                mainPanel(
+                                  conditionalPanel("output.fileUploaded", 
+                                                   plotlyOutput("tSNE_plot", height="700px", width="900px")
                                   )
                                 )
                               )
