@@ -53,6 +53,7 @@ Run_david <- function(species, geneID, ud) {
 
 
 
+
         incProgress(2/5, detail = "Connect David Server")
         library("RDAVIDWebService")
         david = DAVIDWebService(email="zhangchao3@pku.edu.cn", url="https://david.ncifcrf.gov/webservice/services/DAVIDWebService.DAVIDWebServiceHttpSoap12Endpoint/")
@@ -102,6 +103,8 @@ Run_david <- function(species, geneID, ud) {
         #return(DEGs)
 		incProgress(4/5, detail = "Plot : GOPlot") 
 
+		if(ncol(DEGs) != 6){
+
 		library(GOplot)
 		circ <- circle_dat(as.data.frame(Enrich_Terms), as.data.frame(DEGs))
 
@@ -116,20 +119,22 @@ Run_david <- function(species, geneID, ud) {
 			}
 
 			GOBubble(circ, labels = cutoff)
-			}) 
+			}) 	
+		} else {
+			# FoldChange does not have a p-value, so skip ploting
+		}
+		
+		
 
-		#output$GOCir <- renderPlot({
-		#	chord <- chord_dat(data = circ, genes = GOgenes, process = GOprocess)
-		#	GOChord(chord, space = 0.02, gene.order = 'logFC', gene.space = 0.25, gene.size = 5)
-		#	})
 
 		incProgress(5/5, detail = "Finished")
 		#return the enrichment table
-		return(GO_Enrich[,c(1,2,3,10,5)])
-		#return(GO_Enrich)
+		#return(GO_Enrich[,c(1,2,3,4,10,5)])
+		return(Enrich_Terms[,c(1,13,14,2,9,4)])
 		})
 	
 }
+
 
 
 

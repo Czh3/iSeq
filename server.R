@@ -138,6 +138,9 @@ shinyServer(func = function(input, output, session) {
       incProgress(2/5, detail = "Density")
       #distribution
       output$distribution <- renderPlotly({
+        if (ncol(Expression) > 20){
+          return(NULL)
+        }
         Expression.melt = melt(log10(Expression + 1))
         colnames(Expression.melt) = c("Samples", "value")
         p = qplot(value, ..density..,  data=Expression.melt, geom="density", fill=Samples, alpha=I(.5), ylab = "Density", xlab = "log10(Expression + 1)") +
@@ -239,7 +242,7 @@ shinyServer(func = function(input, output, session) {
         Expression.melt = melt(log10(Expression + 1))
         colnames(Expression.melt) = c("Samples", "value")
 
-        p = qplot(Samples, value, data=Expression.melt, geom="boxplot", fill=Samples, alpha=I(.5), xlab = "Samples", ylab = "log10(Expression + 1)") +
+        p = qplot(Samples, value, data=Expression.melt, geom="boxplot", fill=Samples, alpha=I(.5), xlab = " ", ylab = "log10(Expression + 1)") +
           theme_bw(base_size = 30) +
           theme(panel.border = element_rect(colour = "black", size = 2),
                 legend.key.size = unit(1.2, "cm"),

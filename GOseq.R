@@ -63,7 +63,8 @@
 
     GO_ButtonACT <- eventReactive(input$GO_Button, {
           species = GO_s()
-          p = GO_p()
+          #p = GO_p()
+          p = 0.01
           geneID = GO_g()
           GO.result <- GOseq(species, geneID, p, GO_u())
 
@@ -72,7 +73,7 @@
           #plot
           GO_p_f(GO.result)
 
-          DT::datatable(GO.result)
+          DT::datatable(GO.result[,-3])
     })
  
 
@@ -90,14 +91,14 @@
           )
         })
 
-    GO_p = reactive({
-        GO_pval = switch(input$GO_pval,
-          "10^-2" = 0.01,
-          "10^-3" = 0.001,
-          "10^-4" = 0.0001,
-          "none" = 1
-          )
-        })
+    #GO_p = reactive({
+    #    GO_pval = switch(input$GO_pval,
+    #      "10^-2" = 0.01,
+    #      "10^-3" = 0.001,
+    #      "10^-4" = 0.0001,
+    #      "none" = 1
+    #      )
+    #    })
 
     GO_g = reactive({
         GO_geneID = switch(input$GO_geneID,

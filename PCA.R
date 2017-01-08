@@ -9,6 +9,10 @@
     Expression = tmp$Expression
     condition = tmp$condition
 
+    if(is.null(Expression)){
+      return(NULL)
+    }
+
     library(ggfortify)
 
     if (pca_c == "sample"){

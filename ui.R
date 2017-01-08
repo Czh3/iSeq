@@ -155,7 +155,7 @@ shinyUI(navbarPage("iSeq : A web-based server for RNA-seq Data Analysis and Visu
                                            tags$h3("Clust heatmap"),
                                            plotOutput(outputId = "clustHeatmap", height = "600px"),
 
-                                           tags$h3("MA plot: (Just using first 2 columns)"),
+                                           tags$h3("MA plot: (Just using the first 2 samples)"),
                                            #plotOutput(outputId = "MA_plot", height = "700px", width = "700px"),
                                            plotOutput(outputId = "MA_plot", height = "700px")
                                           )
@@ -242,125 +242,7 @@ shinyUI(navbarPage("iSeq : A web-based server for RNA-seq Data Analysis and Visu
                    ),
                   navbarMenu("Function", icon = icon("bullseye"),
                       #tabPanel(HTML("<a href='https://david.ncifcrf.gov/tools.jsp', target='_blank'>DAVID</a>")), 
-                      tabPanel( "GeneOntology(David)",
-                          sidebarLayout(
-                               position = "left",
-                               sidebarPanel(
-                                  selectInput("David_species", "Species", 
-                                                         choices = list("Human", "Mouse", "Other"), 
-                                                         selected = "Human"),
-                                  conditionalPanel(condition = "input.David_species == 'Other'",
-                                      selectInput("David_ID", "Select Identifier",
-                                              choices = list("ENSEMBL_GENE_ID", "ENTREZ_GENE_ID", "FLYBASE_GENE_ID", "MGI_ID", "REFSEQ_GENOMIC", "RGD_ID", "SGD_ID", "TAIR_ID",
-                                                "UCSC_GENE_ID", "UNIGENE", "WORMBASE_GENE_ID","WORMPEP_ID", "ZFIN_ID"),
-                                              selected = "ENTREZ_GENE_ID")
-                                    ),
-                                  conditionalPanel(condition = "input.David_species != 'Other'",
-                                      selectInput("David_ID1", "Select Identifier",
-                                              choices = list("GENE_SYMBOL", "ENSEMBL_GENE_ID", "ENTREZ_GENE_ID", "FLYBASE_GENE_ID", "MGI_ID", "REFSEQ_GENOMIC", "RGD_ID", "SGD_ID", "TAIR_ID",
-                                                "UCSC_GENE_ID", "UNIGENE", "WORMBASE_GENE_ID","WORMPEP_ID", "ZFIN_ID"),
-                                              selected = "GENE_SYMBOL")
-                                    ),
-
-                                  
-                                  checkboxGroupInput("David_updown", label = "DEGs to use:", 
-                                                        choices = list("Up-regulated" , "Down-regulated" ),
-                                                        selected = c("Up-regulated" , "Down-regulated" )),
-                                  actionButton("David_run", "Run !")
-                                ),
-                               mainPanel(
-                                  tags$blockquote(tags$em("Gene Ontology enrichment using DAVID webserver")),
-                                  tags$em(tags$h6("Huang DW, Sherman BT, Lempicki RA. Systematic and integrative analysis of large gene lists using DAVID Bioinformatics Resources. Nature Protoc. 2009;4(1):44-57.")),
-                                  tags$em(tags$h6("Kuleshov MV, Jones MR, Rouillard AD, Fernandez NF, Duan Q, Wang Z, Koplev S, Jenkins SL, Jagodnik KM, Lachmann A, McDermott MG, Monteiro CD, Gundersen GW, Ma'ayan A. Enrichr: a comprehensive gene set enrichment analysis web server 2016 update. Nucleic Acids Research. 2016; gkw377.")),
-                                  DT::dataTableOutput("David_GO_output"),
-                                  tags$br(),tags$br(),
-                                  plotOutput(outputId = "GOBubble", height = "800px")
-                                  #plotOutput(outputId = "GOCir", height = "800px")
-                                )
-                            )
-
-                        ), 
-                        tabPanel( "Pathway(David)",
-                          sidebarLayout(
-                               position = "left",
-                               sidebarPanel(
-                                  selectInput("David_species_pathway", "Specise", 
-                                                         choices = list("Human", "Mouse", "Other"), 
-                                                         selected = "Human"),
-                                  conditionalPanel(condition = "input.David_species_pathway == 'Other'",
-                                      selectInput("David_ID_P", "Select Identifier",
-                                              choices = list("ENSEMBL_GENE_ID", "ENTREZ_GENE_ID", "FLYBASE_GENE_ID", "MGI_ID", "REFSEQ_GENOMIC", "RGD_ID", "SGD_ID", "TAIR_ID",
-                                                "UCSC_GENE_ID", "UNIGENE", "WORMBASE_GENE_ID","WORMPEP_ID", "ZFIN_ID"),
-                                              selected = "ENTREZ_GENE_ID")
-                                    ),
-                                  conditionalPanel(condition = "input.David_species_pathway != 'Other'",
-                                      selectInput("David_ID_P1", "Select Identifier",
-                                              choices = list("GENE_SYMBOL", "ENSEMBL_GENE_ID", "ENTREZ_GENE_ID", "FLYBASE_GENE_ID", "MGI_ID", "REFSEQ_GENOMIC", "RGD_ID", "SGD_ID", "TAIR_ID",
-                                                "UCSC_GENE_ID", "UNIGENE", "WORMBASE_GENE_ID","WORMPEP_ID", "ZFIN_ID"),
-                                              selected = "GENE_SYMBOL")
-                                    ),
-
-                                  
-                                  checkboxGroupInput("David_pathway_updown", label = "DEGs to use:", 
-                                                        choices = list("Up-regulated" , "Down-regulated" ),
-                                                        selected = c("Up-regulated" , "Down-regulated" )),
-                                  actionButton("David_pathway_run", "Run !")
-                                ),
-                               mainPanel(
-                                  tags$blockquote(tags$em("KEGG pathway enrichment using DAVID webserver")),
-                                  tags$em(tags$h6("Huang DW, Sherman BT, Lempicki RA. Systematic and integrative analysis of large gene lists using DAVID Bioinformatics Resources. Nature Protoc. 2009;4(1):44-57.")),
-                                  tags$em(tags$h6("Kuleshov MV, Jones MR, Rouillard AD, Fernandez NF, Duan Q, Wang Z, Koplev S, Jenkins SL, Jagodnik KM, Lachmann A, McDermott MG, Monteiro CD, Gundersen GW, Ma'ayan A. Enrichr: a comprehensive gene set enrichment analysis web server 2016 update. Nucleic Acids Research. 2016; gkw377.")),
-                                  
-                                  DT::dataTableOutput("David_Pathway_output"),
-                                  tags$br(),tags$br()
-                                  #plotOutput(outputId = "Pathway", height = "800px")
-                                )
-                            )
-
-                        ), 
-                      tabPanel("GeneOntology(GOseq)", 
-                              sidebarLayout(
-                                           position = "left",
-                                            sidebarPanel(
-                                             #tags$h4("Genes chosen for Gene Ontology Enrichment"),
-                                             #tags$textarea(id="GO_Genes", rows=10, cols=40, "Paste a gene list, one gene per line..."),
-                                             
-                                             selectInput("GO_species", "Specise", 
-                                                         choices = list("Human", "Mouse"), 
-                                                         selected = "Human"),
-
-                                             selectInput("GO_geneID", "Gene Identifier", 
-                                                         choices = list("GeneSymbol", "ENSEMBL GENE ID", "REFSEQ GENE ID"), 
-                                                         selected = "GeneSymbol"),
-
-                                             selectInput("GO_pval", "p-value cutoff", 
-                                                         choices = list("10^-2", "10^-3", "10^-4", "none"), 
-                                                         selected = "10^-2"),
-
-                                             checkboxGroupInput("GO_updown", label = "DEGs to use:", 
-                                                        choices = list("Up-regulated" , "Down-regulated" ),
-                                                        selected = c("Up-regulated" , "Down-regulated" )),
-
-                                             actionButton("GO_Button", "Run !"),
-                                             downloadButton('downloadGOOutput', 'Download Table')
-                                           ),
-                                           
-                                           mainPanel(
-                                            tags$blockquote(tags$em("KEGG pathway enrichment using GOseq.")),
-                                            tags$em(tags$h6("Young MD, Wakefield MJ, Smyth GK and Oshlack A (2010). “Gene ontology analysis for RNA-seq: accounting for selection bias.” Genome Biology, 11, pp. R14")),
-                                             DT::dataTableOutput("GO_Output"),
-                                             tags$br(),
-                                             #tags$hr(),
-                                             plotOutput(outputId = "GO_plot", height = "600px"),
-                                             tags$br(),
-                                             #tags$hr(),
-                                             plotOutput(outputId = "GO_bar", height = "600px")
-                                           )
-                                         )
-                        ),
-                        
-                        #tabPanel(HTML("<a href='http://bioinfo.vanderbilt.edu/webgestalt/option.php', target='_blank'>webgestalt</a>")),
-                        tabPanel("Other Online Servers", 
+                      tabPanel("Online Servers", 
                           sidebarLayout(
                               position = "left",
                               sidebarPanel(
@@ -399,7 +281,127 @@ shinyUI(navbarPage("iSeq : A web-based server for RNA-seq Data Analysis and Visu
 
                           )
 
-                      )
+                      ),
+
+                      tabPanel( "GeneOntology(David)",
+                          sidebarLayout(
+                               position = "left",
+                               sidebarPanel(
+                                  selectInput("David_species", "Species", 
+                                                         choices = list("Human", "Mouse", "Other"), 
+                                                         selected = "Human"),
+                                  conditionalPanel(condition = "input.David_species == 'Other'",
+                                      selectInput("David_ID", "Select Identifier",
+                                              choices = list("ENSEMBL_GENE_ID", "ENTREZ_GENE_ID", "FLYBASE_GENE_ID", "MGI_ID", "REFSEQ_GENOMIC", "RGD_ID", "SGD_ID", "TAIR_ID",
+                                                "UCSC_GENE_ID", "UNIGENE", "WORMBASE_GENE_ID","WORMPEP_ID", "ZFIN_ID"),
+                                              selected = "ENTREZ_GENE_ID")
+                                    ),
+                                  conditionalPanel(condition = "input.David_species != 'Other'",
+                                      selectInput("David_ID1", "Select Identifier",
+                                              choices = list("GENE_SYMBOL", "ENSEMBL_GENE_ID", "ENTREZ_GENE_ID", "FLYBASE_GENE_ID", "MGI_ID", "REFSEQ_GENOMIC", "RGD_ID", "SGD_ID", "TAIR_ID",
+                                                "UCSC_GENE_ID", "UNIGENE", "WORMBASE_GENE_ID","WORMPEP_ID", "ZFIN_ID"),
+                                              selected = "GENE_SYMBOL")
+                                    ),
+
+                                  
+                                  checkboxGroupInput("David_updown", label = "DEGs to use:", 
+                                                        choices = list("Up-regulated" , "Down-regulated" ),
+                                                        selected = c("Up-regulated" , "Down-regulated" )),
+                                  actionButton("David_run", "Run !")
+                                ),
+                               mainPanel(
+                                  tags$blockquote(tags$em("Gene Ontology enrichment using DAVID webserver")),
+                                  tags$em(tags$h6("Huang DW, Sherman BT, Lempicki RA. Systematic and integrative analysis of large gene lists using DAVID Bioinformatics Resources. Nature Protoc. 2009;4(1):44-57.")),
+                                  tags$em(tags$h6("Huang DW, Sherman BT, Lempicki RA. Bioinformatics enrichment tools: paths toward the comprehensive functional analysis of large gene lists. Nucleic Acids Res. 2009;37(1):1-13.")),
+                                  DT::dataTableOutput("David_GO_output"),
+                                  tags$br(),tags$br(),
+                                  plotOutput(outputId = "GOBubble", height = "800px")
+                                  #plotOutput(outputId = "GOCir", height = "800px")
+                                )
+                            )
+
+                        ), 
+                        
+
+                        tabPanel( "Pathway(David)",
+                          sidebarLayout(
+                               position = "left",
+                               sidebarPanel(
+                                  selectInput("David_species_pathway", "Specise", 
+                                                         choices = list("Human", "Mouse", "Other"), 
+                                                         selected = "Human"),
+                                  conditionalPanel(condition = "input.David_species_pathway == 'Other'",
+                                      selectInput("David_ID_P", "Select Identifier",
+                                              choices = list("ENSEMBL_GENE_ID", "ENTREZ_GENE_ID", "FLYBASE_GENE_ID", "MGI_ID", "REFSEQ_GENOMIC", "RGD_ID", "SGD_ID", "TAIR_ID",
+                                                "UCSC_GENE_ID", "UNIGENE", "WORMBASE_GENE_ID","WORMPEP_ID", "ZFIN_ID"),
+                                              selected = "ENTREZ_GENE_ID")
+                                    ),
+                                  conditionalPanel(condition = "input.David_species_pathway != 'Other'",
+                                      selectInput("David_ID_P1", "Select Identifier",
+                                              choices = list("GENE_SYMBOL", "ENSEMBL_GENE_ID", "ENTREZ_GENE_ID", "FLYBASE_GENE_ID", "MGI_ID", "REFSEQ_GENOMIC", "RGD_ID", "SGD_ID", "TAIR_ID",
+                                                "UCSC_GENE_ID", "UNIGENE", "WORMBASE_GENE_ID","WORMPEP_ID", "ZFIN_ID"),
+                                              selected = "GENE_SYMBOL")
+                                    ),
+
+                                  
+                                  checkboxGroupInput("David_pathway_updown", label = "DEGs to use:", 
+                                                        choices = list("Up-regulated" , "Down-regulated" ),
+                                                        selected = c("Up-regulated" , "Down-regulated" )),
+                                  actionButton("David_pathway_run", "Run !")
+                                ),
+                               mainPanel(
+                                  tags$blockquote(tags$em("KEGG pathway enrichment using DAVID webserver")),
+                                  tags$em(tags$h6("Huang DW, Sherman BT, Lempicki RA. Systematic and integrative analysis of large gene lists using DAVID Bioinformatics Resources. Nature Protoc. 2009;4(1):44-57.")),
+                                  tags$em(tags$h6("Huang DW, Sherman BT, Lempicki RA. Bioinformatics enrichment tools: paths toward the comprehensive functional analysis of large gene lists. Nucleic Acids Res. 2009;37(1):1-13.")),
+                                  
+                                  DT::dataTableOutput("David_Pathway_output"),
+                                  tags$br(),tags$br()
+                                  #plotOutput(outputId = "Pathway", height = "800px")
+                                )
+                            )
+
+                        ), 
+                      tabPanel("GeneOntology(GOseq)", 
+                              sidebarLayout(
+                                           position = "left",
+                                            sidebarPanel(
+                                             #tags$h4("Genes chosen for Gene Ontology Enrichment"),
+                                             #tags$textarea(id="GO_Genes", rows=10, cols=40, "Paste a gene list, one gene per line..."),
+                                             
+                                             selectInput("GO_species", "Specise", 
+                                                         choices = list("Human", "Mouse"), 
+                                                         selected = "Human"),
+
+                                             selectInput("GO_geneID", "Gene Identifier", 
+                                                         choices = list("GeneSymbol", "ENSEMBL GENE ID", "REFSEQ GENE ID"), 
+                                                         selected = "GeneSymbol"),
+
+                                             #selectInput("GO_pval", "p-value cutoff", 
+                                             #            choices = list("10^-2", "10^-3", "10^-4", "none"), 
+                                             #            selected = "10^-2"),
+
+                                             checkboxGroupInput("GO_updown", label = "DEGs to use:", 
+                                                        choices = list("Up-regulated" , "Down-regulated" ),
+                                                        selected = c("Up-regulated" , "Down-regulated" )),
+
+                                             actionButton("GO_Button", "Run !"),
+                                             downloadButton('downloadGOOutput', 'Download Table')
+                                           ),
+                                           
+                                           mainPanel(
+                                            tags$blockquote(tags$em("Gene Ontology enrichment using GOseq.")),
+                                            tags$em(tags$h6("Young MD, Wakefield MJ, Smyth GK and Oshlack A (2010). “Gene ontology analysis for RNA-seq: accounting for selection bias.” Genome Biology, 11, pp. R14")),
+                                             DT::dataTableOutput("GO_Output"),
+                                             tags$br(),
+                                             #tags$hr(),
+                                             plotOutput(outputId = "GO_plot", height = "600px"),
+                                             tags$br(),
+                                             #tags$hr(),
+                                             plotOutput(outputId = "GO_bar", height = "600px")
+                                           )
+                                         )
+                        ) 
+                        
                     ),
 
 					          navbarMenu("Plots", icon = icon("barcode"),
