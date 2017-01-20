@@ -66,7 +66,8 @@ shinyUI(navbarPage("iSeq : A web-based server for RNA-seq Data Analysis and Visu
                                 conditionalPanel("output.fileUploaded1",
                                                   tags$h4(tags$b("iSeq ", id = "firstLetter")," is a websever to help you analyse RNA sequencing data and plot publishable figures."),
                                                   tags$h4("Upload your genes Expression data first !"),
-                                                  tags$hr(),
+                                                  HTML("<h3>If iSeq is new to you, look this: <a href='iSeq_workflow.pdf'>workflow</a>, <a href='tutorial.pdf'>tutorial</a></h3>"),
+												  tags$hr(),
                                                   HTML('<img src="examples.png", width="100%"/>'),
                                                   tags$hr(),
                                                   HTML("
@@ -289,7 +290,7 @@ shinyUI(navbarPage("iSeq : A web-based server for RNA-seq Data Analysis and Visu
                                sidebarPanel(
                                   selectInput("David_species", "Species", 
                                                          choices = list("Human", "Mouse", "Other"), 
-                                                         selected = "Human"),
+                                                         selected = "Mouse"),
                                   conditionalPanel(condition = "input.David_species == 'Other'",
                                       selectInput("David_ID", "Select Identifier",
                                               choices = list("ENSEMBL_GENE_ID", "ENTREZ_GENE_ID", "FLYBASE_GENE_ID", "MGI_ID", "REFSEQ_GENOMIC", "RGD_ID", "SGD_ID", "TAIR_ID",
@@ -329,7 +330,7 @@ shinyUI(navbarPage("iSeq : A web-based server for RNA-seq Data Analysis and Visu
                                sidebarPanel(
                                   selectInput("David_species_pathway", "Specise", 
                                                          choices = list("Human", "Mouse", "Other"), 
-                                                         selected = "Human"),
+                                                         selected = "Mouse"),
                                   conditionalPanel(condition = "input.David_species_pathway == 'Other'",
                                       selectInput("David_ID_P", "Select Identifier",
                                               choices = list("ENSEMBL_GENE_ID", "ENTREZ_GENE_ID", "FLYBASE_GENE_ID", "MGI_ID", "REFSEQ_GENOMIC", "RGD_ID", "SGD_ID", "TAIR_ID",
@@ -370,7 +371,7 @@ shinyUI(navbarPage("iSeq : A web-based server for RNA-seq Data Analysis and Visu
                                              
                                              selectInput("GO_species", "Specise", 
                                                          choices = list("Human", "Mouse"), 
-                                                         selected = "Human"),
+                                                         selected = "Mouse"),
 
                                              selectInput("GO_geneID", "Gene Identifier", 
                                                          choices = list("GeneSymbol", "ENSEMBL GENE ID", "REFSEQ GENE ID"), 
@@ -533,7 +534,7 @@ shinyUI(navbarPage("iSeq : A web-based server for RNA-seq Data Analysis and Visu
                                 column(7,
                                   h3("About"),
                                   HTML("
-                                    <h5>iSeq is a web-based platform for RNA-seq research. If you are new to iSeq read the tutorial (<a href='iSeq_introduction_ChineseVersion.pdf'>Chinese version</a>).</h5><br />
+                                    <h5>iSeq is a web-based platform for RNA-seq research. If you are new to iSeq read the tutorial (<a href='tutorial.pdf'>English version</a>, <a href='iSeq_introduction_ChineseVersion.pdf'>Chinese version</a>).</h5><br />
                                     <a href='http://www.pku.edu.cn/'><img src='pku_logo.png', width='40%'/></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
                                     <a href='http://www.cls.edu.cn/'><img src='cls_logo.png', width='40%'/></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <a href='http://forum.cbi.pku.edu.cn/forum.php'><img src='forum_logo.png', width='40%' /></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
