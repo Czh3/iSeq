@@ -41,7 +41,7 @@ Run_david <- function(species, geneID, ud) {
 		else if (species == "Mouse"){
 
 			if (geneID == "GENE_SYMBOL"){
-				library(org.Mm.eg.db, lib.loc = "~/tools/")
+				library(org.Mm.eg.db)
 				DEG <- select(org.Mm.eg.db, DEG, "ENTREZID", "SYMBOL")[,2]
 				geneID = "ENTREZ_GENE_ID"
 			}

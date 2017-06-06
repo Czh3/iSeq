@@ -7,7 +7,7 @@
         library(goseq)
         if (species == "mm9")
         {
-          library(org.Mm.eg.db, lib.loc = "~/tools/")
+          library(org.Mm.eg.db)
 
         } else if (species == "hg19")
         {
